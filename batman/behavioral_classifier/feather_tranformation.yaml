@@ -1,0 +1,48 @@
+
+DATA:
+  LOAD_FROM_OUTPUT: True
+  INPUT:
+    SOURCE: 'Cadaster'
+    TYPE: 'Pandas'
+    PATH: '22-01-01.feather'
+    MAPPING: {'dark (longer > 3600 sec)': 'dark', 'spoof (speed > 1000)': 'spoof', 'elevation > 100 m)': 'over100'}
+    NORMALIZE: {'latitude': [-90,90], 
+    'longitude': [-180,180], 
+    'Heading': [0,359],
+    'SOG': [0,50], 
+    'COG': [1,360], 
+    'Length': [1,460], 
+    'Width': [1,70],
+    }
+    SPECIAL_VALUES: {'Heading': ['Heading_na', 511]}
+    IS_OUTSIDE: {'latitude': ['lat_spoof',-90,90], 
+    'longitude': ['lon_spoof', -180,180]}
+    IS_NAN: []
+    DECIMATE: ['VesselName', 'IMO', 'CallSign', 'source_file', 'time_chunk', 'TransceiverClass', 'curvature rad/km', 'Cargo', 'elevation m', 'delta sec', 'delta km'] 
+    LABEL: None
+    SPLIT_TIME: ['timestamp']
+    SAVE: True
+    ENCODERS:
+        ENCODER_PATH: 'encoders'
+        BASE2: 
+          CREATE: {}
+          LOAD: {"vessel_type.pkl": "VesselType", 'status.pkl': "Status"}
+        ONE_HOT:
+          CREATE: {}
+          LOAD: {}
+  OUTPUT: 
+    SAVE_PATH: '/tfrecords'
+    TYPE: 'tfrecord'
+    LOAD_PATHS: ['/tfrecords']
+  
+DATA_ONLY: True
+MODEL:
+  ROOT: 'models'
+  SAVE_PATH: '${.ROOT}/${.MODEL_TYPE}'
+  MODEL_TYPE: 'CAE'
+  CALLBACKS: ['ModelCheckpoint']
+  RFF: 4
+  TRAIN:
+    epochs: 100
+    batch_size: 32
+  

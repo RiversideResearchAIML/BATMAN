@@ -1,0 +1,96 @@
+DATA:
+  LOAD_FROM_OUTPUT: True
+  RESAMPLED:
+    LABELS: '2022-01-01.feather'
+    SOURCE: 'Cadaster'
+    TYPE: 'Pandas'
+    PATH: 'AIS_2022_01_01.feather'
+    MAPPING: {}
+    CLIP: {'excursion from mean m': ['NA',150000], 
+    'min delta m': [0, 15000], 
+    'max delta m': [0, 15000], 
+    'mean delta m': [0, 15000], 
+    'std delta m': [0, 15000]}
+    NORMALIZE: {'mean latitude': [-90,90], 
+    'mean longitude': [-180,180],
+    'count': [0,100],
+    'end2end deg': [0,360],
+    'excursion from mean m': [0,100000],
+    'mean delta sec': [0, 3600], 
+    'std delta sec': [0, 3600], 
+    'min delta sec': [0, 3600],
+    'max delta sec': [0, 3600],
+    'mean delta m': [0, 10000], 
+    'std delta m': [0, 10000], 
+    'min delta m': [0, 10000],
+    'max delta m': [0, 10000],
+    # 'min speed': [0, 75]
+    }
+    SPECIAL_VALUES: {}
+    IS_OUTSIDE: {'path length m': ['long_path',0,100000], 
+    'end2end m': ['long_dist', 0,100000],
+    # 'max speed': ['high max speed', 0, 75],
+    }
+    IS_NAN: []
+    # DECIMATE: ['end2end sec'] 
+    DECIMATE: ['end2end sec', 'mean accel', 'std accel', 'max accel', 'min accel', 'mean ang vel', 
+    'std ang vel', 'max ang vel', 'min ang vel', 'mean ang accel', 'std ang accel', 'max ang accel', 
+    'min ang accel', 'span m', 'mean speed', 'std speed', 'max speed', 'min speed'] 
+    LABEL: None
+    SPLIT_TIME: ['timestamp']
+    SAVE: True
+    ENCODERS:
+        ENCODER_PATH: '/encoders'
+        BASE2: 
+          CREATE: {}
+          LOAD: # {"vessel_type.pkl": "VesselType", 'status.pkl': "Status"}
+        ONE_HOT:
+          CREATE: {}
+          LOAD: {}
+  
+  AIS:
+    SOURCE: 'Cadaster'
+    TYPE: 'Pandas'
+    PATH: '22-01-01.feather'
+    MAPPING: {'dark (longer > 3600 sec)': 'dark', 'spoof (speed > 1000)': 'spoof', 'elevation > 100 m)': 'over100'}
+    NORMALIZE: {'latitude': [-90,90], 
+    'longitude': [-180,180], 
+    'Heading': [0,359],
+    'SOG': [0,50], 
+    'COG': [1,360], 
+    'Length': [1,460], 
+    'Width': [1,70],
+    }
+    SPECIAL_VALUES: {'Heading': ['Heading_na', 511]}
+    IS_OUTSIDE: {'latitude': ['lat_spoof',-90,90], 
+    'longitude': ['lon_spoof', -180,180]}
+    IS_NAN: []
+    DECIMATE: ['VesselName', 'IMO', 'CallSign', 'source_file', 'time_chunk', 'TransceiverClass', 'curvature rad/km', 'Cargo', 'elevation m', 'delta sec', 'delta km'] 
+    LABEL: None
+    SPLIT_TIME: ['timestamp']
+    SAVE: True
+    ENCODERS:
+        ENCODER_PATH: 'encoders'
+        BASE2: 
+          CREATE: {}
+          LOAD: {"vessel_type.pkl": "VesselType", 'status.pkl': "Status"}
+        ONE_HOT:
+          CREATE: {}
+          LOAD: {}
+
+  OUTPUT: 
+    SAVE_PATH: 'AIS/outputs/tfrecords/hour_resampled'
+    TYPE: 'tfrecord'
+    LOAD_PATHS: ['AIS/outputs/tfrecords/hour_resampled']
+  
+DATA_ONLY: False
+
+MODEL:
+  ROOT: 'models'
+  SAVE_PATH: '${.ROOT}/${.MODEL_TYPE}'
+  MODEL_TYPE: '2D_Conv'
+  CALLBACKS: ['ModelCheckpoint']
+  RFF: 4
+  TRAIN:
+    epochs: 100
+    batch_size: 32

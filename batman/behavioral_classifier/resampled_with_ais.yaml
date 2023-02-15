@@ -1,0 +1,260 @@
+DATA:
+  LOAD_FROM_OUTPUT: True
+  
+  SAMPLE:
+    ROOT: "10-29"
+    SOURCE: 'Cadaster'
+    TYPE: 'Pandas'
+    PATHS: ["${DATA.SAMPLE.ROOT}/AIS_2022_01_01 (AIS_harvest H).feather", 
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_02 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_03 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_04 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_05 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_06 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_07 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_08 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_09 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_10 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_11 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_12 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_13 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_14 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_15 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_16 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_17 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_18 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_19 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_20 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_21 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_22 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_23 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_24 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_25 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_26 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_27 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_28 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_29 (AIS_harvest H).feather",
+    "${DATA.SAMPLE.ROOT}/AIS_2022_01_30 (AIS_harvest H).feather",
+    ]
+    MAPPING: {}
+    CLIP: {
+    'AIS_trajectory min delta m': [0, 15000], 
+    'AIS_trajectory max delta m': [0, 15000], 
+    'AIS_trajectory mean delta m': [0, 15000], 
+    'AIS_trajectory std delta m': [0, 15000],
+    'AIS_trajectory min speed m/sec': [0,75],
+    'AIS_trajectory std speed m/sec': [0,75],
+    'AIS_trajectory max speed m/sec': [0,75],
+    'AIS_trajectory mean speed m/sec': [0,75],
+    'AIS_trajectory mean delta sec': [0, 3600], 
+    'AIS_trajectory std delta sec': [0, 3600], 
+    'AIS_trajectory min delta sec': [0, 3600],
+    'AIS_trajectory max delta sec': [0, 3600],
+    'AIS_trajectory excursion from mean m': [0,150000],
+    'AIS_trajectory path m': [0,150000],
+    'AIS_trajectory end2end m': [0,150000],
+    'AIS_downsample SOG': [0, 75],
+    }
+    NORMALIZE: {
+    'AIS_downsample latitude': [-90,90], 
+    'AIS_downsample longitude': [-180,180],
+    'AIS_downsample SOG': [0,50], 
+    'AIS_downsample COG': [1,360],
+    'AIS_downsample Heading': [0,359],
+    'AIS_downsample Length': [1,460], 
+    'AIS_downsample Width': [1,140],
+    'AIS_neighbors 0 dist m': [0,5000], 
+    'AIS_neighbors 1 dist m': [0,5000],
+    'AIS_neighbors 2 dist m': [0,5000],
+    'AIS_neighbors 0 mmsi': [0, 999999999],
+    'AIS_neighbors 1 mmsi': [0, 999999999], 
+    'AIS_neighbors 2 mmsi': [0, 999999999],
+    'AIS_neighbors # within 5E+03 m': [0,1000],
+    'AIS_trajectory mean latitude': [-90,90], 
+    'AIS_trajectory mean longitude': [-180,180],
+    'AIS_trajectory count': [0,100],
+    'AIS_trajectory end2end m': [0,100000],
+    'AIS_trajectory end2end deg': [0,360],
+    'AIS_trajectory excursion from mean m': [0,100000],
+    'AIS_trajectory path m': [0,100000],
+    'AIS_trajectory mean delta sec': [0, 3600], 
+    'AIS_trajectory std delta sec': [0, 3600], 
+    'AIS_trajectory min delta sec': [0, 3600],
+    'AIS_trajectory max delta sec': [0, 3600],
+    'AIS_trajectory mean delta m': [0, 100000], 
+    'AIS_trajectory std delta m': [0, 100000], 
+    'AIS_trajectory min delta m': [0, 100000],
+    'AIS_trajectory max delta m': [0, 100000],
+    'AIS_trajectory min speed m/sec': [0,50],
+    'AIS_trajectory std speed m/sec': [0,50],
+    'AIS_trajectory max speed m/sec': [0,50],
+    'AIS_trajectory mean speed m/sec': [0,50],
+    'AIS_trajectory min bearing deg': [-180, 180],
+    'AIS_trajectory max bearing deg': [-180, 180],
+    'AIS_trajectory mean bearing deg': [-180, 180],
+    'AIS_trajectory std bearing deg': [-180, 180],
+    'AIS_numpy_tagging coast_distance_km': [0, 2650],
+    }
+    SPECIAL_VALUES: {}
+    IS_OUTSIDE: {}
+    IS_NAN: []
+    DECIMATE: ['AIS_downsample VesselName', 'AIS_downsample IMO','AIS_downsample CallSign','AIS_downsample Cargo', 
+    'AIS_trajectory span m', 'AIS_trajectory std curvature deg/m', 'AIS_trajectory std accel m/sec^2', 
+    'AIS_trajectory std ang vel deg/sec', 'AIS_trajectory std ang accel deg/sec^2', 'AIS_trajectory min curvature deg/m',
+    'AIS_loitering loit time for 5000 m', 'AIS_loitering loit dist for 5000 m', 'AIS_trajectory mean curvature deg/m', 
+    'AIS_trajectory max curvature deg/m', 'AIS_trajectory max accel m/sec^2', 'AIS_trajectory max ang vel deg/sec', 
+    'AIS_trajectory max ang accel deg/sec^2', 'AIS_numpy_tagging earth_elevation_m', 'AIS_numpy_tagging shipping_intensity',
+    'wld_trs_ports_wfp.csv lat_lon geonameid', 'AIS_downsample Draft', 'AIS_trajectory mean accel m/sec^2', 
+    'AIS_trajectory mean ang vel deg/sec', 'AIS_trajectory mean ang accel deg/sec^2', 'AIS_trajectory min accel m/sec^2',
+    'AIS_trajectory min ang vel deg/sec', 'AIS_trajectory min ang accel deg/sec^2', 'AIS_loitering loit index for 5000 m', 
+    'AIS_description VesselType', 'AIS_description Status']
+    SPLIT_TIME: ['AIS_downsample timestamp', ]
+    ENCODERS:
+      ENCODER_PATH: 'encoders'
+      BASE2: 
+        CREATE: {}
+        LOAD: {'transceiver.pkl': 'AIS_downsample TransceiverClass', "vessel_type.pkl": 'AIS_downsample VesselType', 'status.pkl': 'AIS_downsample Status', 'pipeline.pkl': 'GEM_Oil_Gas_Pipelines_2022-10.geojson geometry PipelineName', 'port.pkl': 'wld_trs_ports_wfp.csv lat_lon portname', "zone.pkl": 'NOAA_MPAI_v2020.gdb geometry Fish_Rstr'}
+      ONE_HOT:
+        CREATE: {}
+        LOAD: {}
+  
+  
+  LEGALITY:
+    ROOT: '2022-11-15'
+    AIS_ROOT: 
+    SOURCE: 'Cadaster'
+    TYPE: 'Pandas'
+    PATHS: ["${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-01.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-02.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-03.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-04.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-05.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-06.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-07.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-08.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-09.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-10.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-11.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-12.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-13.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-14.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-15.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-16.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-17.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-18.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-19.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-20.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-21.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-22.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-23.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-24.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-25.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-26.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-27.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-28.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-29.feather",
+    "${DATA.LEGALITY.ROOT}/AIS_legality 2022-01-30.feather",
+    ]
+    MAPPING: {}
+    CLIP: {}
+    NORMALIZE: {}
+    SPECIAL_VALUES: {}
+    IS_OUTSIDE: {}
+    IS_NAN: []
+    DECIMATE: ['timestamp', 'mmsi', 'index', 'latitude', 'longitude', 'SOG', 'COG', 'Heading', 'VesselType', 'Status', 'Length', 'Width', 'Draft', 'Cargo', 'interp index', 'timestamp nearest', 'latitude nearest', 'longitude nearest', 'SOG nearest', 'COG nearest', 'Heading nearest', 'VesselName nearest', 'IMO nearest', 'CallSign nearest', 'VesselType nearest', 'Status nearest', 'Length nearest', 'Width nearest', 'Draft nearest', 'Cargo nearest', 'TransceiverClass nearest', 'AIS_description VesselType', 'AIS_description Status', 'World_EEZ_Intersect_IHO_v4_2020.geojson geometry ISO_SOV1']
+    SPLIT_TIME: []
+    ENCODERS:
+      ENCODER_PATH: 'encoders'
+      BASE2: 
+        CREATE: {}
+        LOAD: {} 
+      ONE_HOT:
+        CREATE: {}
+        LOAD: {}
+        
+        
+        
+        
+  LABELS:
+    ROOT: "10-29"
+    SOURCE: 'Cadaster'
+    TYPE: 'Pandas'
+    PATHS: ["${DATA.LABELS.ROOT}/AIS_2022_01_01 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather", 
+    "${DATA.LABELS.ROOT}/AIS_2022_01_02 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_03 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_04 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_05 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_06 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_07 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_08 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_09 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_10 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_11 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_12 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_13 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_14 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_15 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_16 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_17 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_18 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_19 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_20 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_21 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_22 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_23 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_24 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_25 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_26 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_27 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_28 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_29 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    "${DATA.LABELS.ROOT}/AIS_2022_01_30 (AIS_behaviors loitering 5E+03, OOB speed 35, OOB ang vel 45, transshipment 20, from coast 1E+04, anamolous routing 0.5).feather",
+    ]
+    MAPPING: {}
+    CLIP: {}
+    NORMALIZE: {}
+    SPECIAL_VALUES: {}
+    IS_OUTSIDE: {}
+    IS_NAN: []
+    IS_GREATER: {
+        'mmsi of transshipment within 20 m 1E+04 m away from coast': 999,
+    }
+    IS_LESS: {
+    
+    }
+    IS_ANY: {
+        'successive loitering at sea within 5E+03 m': True,
+        'successive loitering within 2E3 m of pipelines by dredging or diving vessel': True,
+        'successive loitering within 10E3 m of port': True,
+        'successive loitering > 1E+04 m away from coast': True,
+        'successive loitering < 1E+04 m near coast': True,
+        'successive loitering at sea and fishing vessel and Fishing Prohibited': True,
+        'successive loitering at sea and fishing vessel dark': True,
+        'successive loitering at sea and fishing vessel and Fishing Prohibited and dark': True,
+        'anamolous routing 1E+04 m away from coast for cargo ships at sea, where > 50% waypoints are un-traveled': True
+    }
+    IS_NOT: {
+
+    }
+    DECIMATE:
+    
+  
+
+
+  OUTPUT: 
+    SAVE_PATH: ""
+    TYPE: 'tfrecord'
+    LOAD_PATHS: ["records/11_15/"]
+  
+DATA_ONLY: False
+
+MODEL:
+  ROOT: 'conv2d'
+  SAVE_PATH: '${.ROOT}/${.MODEL_TYPE}-epoch_{epoch:02d}-val_accuracy_{val_accuracy:.2f}.h5'
+  MODEL_TYPE: '2D_Conv'
+  REPORT: '${.ROOT}/report_{}.txt' 
+  CALLBACKS: ['ModelCheckpoint']
+  RFF: 2
+  TRAIN:
+    epochs: 100
+    batch_size: 32
