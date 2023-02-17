@@ -27,6 +27,10 @@ Now code can be imported from the `batman` package directly, for example: `from 
 Once the repository has been set up, there is an IPython notebook called `tutorial_notebook.ipynb` which is a good place
 to try out the code available and become familiar with the repository.
 
+## Google Earth EO Dataset
+The full Google Earth EO dataset can be found at the following link for ship detection in images. Additionally, timestamps and locations for the images are within the dataset in separate files.
+Google Earth EO Dataset: https://drive.google.com/drive/folders/1RxU6RWzjErzYMkV4MJCBfVt79hgaT17l?usp=sharing
+
 ## File structure of `batman/` package
 `data_utils` directory contains python functions and classes for reading, manipulating, and comparing AIS data.
 It also contains some functions related to STK ship files, for generating new versions of the MDoDS dataset (see link in
